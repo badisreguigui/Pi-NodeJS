@@ -21,3 +21,26 @@ exports.afficherDossierInscription = function (req, res){
 
     })
 }
+
+exports.afficherDossierParId = function (req,res){
+    var id = req.params.id;
+    DossierInscription.findById(id).exec(function(err,dossierInscription){
+        if(err)
+            res.status(400).send(err);
+        if(!dossierInscription)
+            res.status(404).send();
+        else
+            res.json(dossierInscription);
+    })   
+}
+
+
+exports.supprimerDossierParId = function (req,res){
+    var id = req.params.id;
+    DossierInscription.findByIdAndRemove(id,function(err,dossierInscription){
+        if(err)
+            res.status(400).send(err);
+        else
+            res.send();
+    })   
+}
