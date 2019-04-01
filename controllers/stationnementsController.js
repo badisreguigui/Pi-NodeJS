@@ -21,3 +21,26 @@ exports.afficherStationnement = function (req, res) {
 
     })
 }
+
+exports.afficherStationnementParId = function (req,res){
+    var id = req.params.id;
+    Stationnement.findById(id).exec(function(err,stationnement){
+        if(err)
+            res.status(400).send(err);
+        if(!stationnement)
+            res.status(404).send();
+        else
+            res.json(stationnement);
+    })   
+}
+
+
+exports.supprimerStationnementParId = function (req,res){
+    var id = req.params.id;
+    Stationnement.findByIdAndRemove(id,function(err,stationnement){
+        if(err)
+            res.status(400).send(err);
+        else
+            res.send();
+    })   
+}

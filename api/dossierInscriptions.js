@@ -6,5 +6,7 @@ var dossierInscriptionController = require('../controllers/dossierInscriptionsCo
 
 router.post('/',dossierInscriptionController.ajouterDossierInscription);
 router.get('/',dossierInscriptionController.afficherDossierInscription);
+router.get('/:id',dossierInscriptionController.afficherDossierParId);
+router.delete('/:id',dossierInscriptionController.supprimerDossierParId);
 
 module.exports = router;
