@@ -7,9 +7,13 @@ var db = require('./Database/db');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./api/users');
-var predictionRouter = require('./api/prediction');
-
+var usersRouter = require('./routes/users');
+var voitureRouter = require('./api/voitures');
+var conducteurRouter = require('./api/conducteurs');
+var stationnementRouter = require('./api/stationnements');
+var garantieRouter = require('./api/garanties');
+var dossierInscriptionRouter = require('./api/dossierInscriptions');
+//var usersRouter = require('./api/users ');
 
 var app = express();
 
@@ -26,7 +30,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/prediction', predictionRouter);
+app.use('/voitures',voitureRouter);
+app.use('/conducteurs',conducteurRouter);
+app.use('/stationnements',stationnementRouter);
+app.use('/garanties',garantieRouter);
+app.use('/inscriptions',dossierInscriptionRouter);
+
 
 
 // catch 404 and forward to error handler
