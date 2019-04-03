@@ -7,8 +7,9 @@ var db = require('./Database/db');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./api/users');
 var voitureRouter = require('./api/voitures');
+var messageRouter = require('./api/messages');
 var conducteurRouter = require('./api/conducteurs');
 var stationnementRouter = require('./api/stationnements');
 var garantieRouter = require('./api/garanties');
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/messages', messageRouter);
 app.use('/voitures',voitureRouter);
 app.use('/conducteurs',conducteurRouter);
 app.use('/stationnements',stationnementRouter);
@@ -53,5 +55,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

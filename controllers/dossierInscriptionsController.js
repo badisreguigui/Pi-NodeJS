@@ -1,5 +1,6 @@
 var DossierInscription = require('../models/dossierInscription');
 
+
 exports.ajouterDossierInscription = function (req, res){
     var dossierInscription = new DossierInscription(req.body);
     dossierInscription.save(function (err,todo) {

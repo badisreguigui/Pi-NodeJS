@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 
 
-const DureeAssurance = {
+const DureeAssurance = 
+{
     TRIMSETRE : 'TRIMESTRE',
     SEMESTRE  : 'SEMESTRE',
     ANNUEL : 'ANNUEL'
