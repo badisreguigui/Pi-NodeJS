@@ -8,5 +8,6 @@ router.post('/',dossierInscriptionController.ajouterDossierInscription);
 router.get('/',dossierInscriptionController.afficherDossierInscription);
 router.get('/:id',dossierInscriptionController.afficherDossierParId);
 router.delete('/:id',dossierInscriptionController.supprimerDossierParId);
+router.get('/score/:id',dossierInscriptionController.getD);
 
 module.exports = router;
