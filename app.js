@@ -18,6 +18,12 @@ var dossierInscriptionRouter = require('./api/dossierInscriptions');
 //var usersRouter = require('./api/users ');
 var policyContractRouter=require('./api/insuranceContract');
 
+var billing = require('./api/billing');
+var textSpeech = require('./api/textSpeech');
+var paymentsMethods = require('./api/paymentsMethods');
+
+
+
 var app = express();
 
 
@@ -42,6 +48,10 @@ app.use('/garanties',garantieRouter);
 app.use('/inscriptions',dossierInscriptionRouter);
 app.use('/policyContract',policyContractRouter);
 
+
+app.use('/billing',billing);
+app.use('/textspeech',textSpeech);
+app.use('/paymentsMethods',paymentsMethods);
 
 
 // catch 404 and forward to error handler
