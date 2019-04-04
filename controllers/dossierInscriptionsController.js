@@ -15,6 +15,7 @@ var Garantie = require('../models/garantie');
     })
 } */
 
+// inscription 
 exports.ajouterDossierInscription = function (req, res){
     // var dossierInscription = new DossierInscription(req.body);
      var conducteur = new Conducteur(req.body.conducteur);
@@ -67,6 +68,8 @@ exports.afficherDossierParId = function (req,res){
             res.json(dossierInscription);
     })   
 }
+
+
 
 
 exports.supprimerDossierParId = function (req,res){
@@ -122,6 +125,21 @@ async function getGarantie(id)
             return resolve(garantie);
         });
     })
+}
+
+//afficher le dossier par l'id user
+exports.afficherDossierParIdConducteur = async (req,res) => {
+    var id = req.params.id;
+    var c = await getConducteur(id);
+    DossierInscription.findOne({conducteur: c.id}, function(err,dossierInscription) 
+    { 
+            if(err)
+            res.status(400).send(err);
+            if(!dossierInscription)
+            res.status(404).send();
+            else
+            res.json(dossierInscription); 
+    }); 
 }
 
  async function description(score) {
@@ -210,7 +228,18 @@ async function CalculerCout(suggestion,score) {
 } 
 
 
+/* PARKING : 'PARKING',
+VOIE_PUBLIQUE: 'VOIE_PUBLIQUE',
+GARAGE : 'GARAGE' */
 
+/* PRIVE : 'PRIVE',
+TRAVAIL : 'TRAVAIL' */
+//2eme fonction 
+/* "numero de dossier": "5ca51bba1686d305fb56dd79",
+    "score (%) ": 38,
+    "suggestion du type d'assurance ": "tous risques",
+    "reponse": "mauvais",
+    "cout personnalisé en dinars": 275 */
 exports.getD = async (req,res) => {
     var dossier = await getDossier(req.params.id);  
     var vehicule = await getVoiture(dossier.vehicule);
@@ -447,7 +476,7 @@ exports.getD = async (req,res) => {
                 "tousRisque "+tousRisque,
                 "tiers"+tiers,cout);
 
-    res.json({"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars":cout});
+    res.json({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars":cout});
 
 }
 
