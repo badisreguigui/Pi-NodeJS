@@ -4,7 +4,8 @@ var Voiture = require('../models/voiture');
 var Stationnement = require('../models/stationnement');
 var Garantie = require('../models/garantie');
 
-
+var policyCost=null;
+var policyDossierInscription=null;
 
 
 exports.ajouterDossierInscription = function (req, res){
@@ -25,6 +26,8 @@ exports.ajouterDossierInscription = function (req, res){
                          garantie:garantie.id,
                          dureeAsurance:req.body.dureeAsurance
                      });
+                     policyDossierInscription=dossierInscription;
+                     module.exports.policyDossierInscription=policyDossierInscription;
                      dossierInscription.save();
                      res.send(dossierInscription);
                  })
@@ -433,7 +436,8 @@ exports.getD = async (req,res) => {
     }
 
     cout = await CalculerCout(suggestion,score);
-
+    policyCost=cout;
+    module.exports.policyCost=policyCost;
     console.log(reponse,suggestion);
     console.log("inter "+intermediare,
                 "tousRisque "+tousRisque,

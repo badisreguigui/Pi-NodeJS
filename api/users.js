@@ -6,6 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var auth = require('../api/auth')
 
+var connectedUser=null;
 router.post('/register',function (req, res) {
     var user = new User({
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
@@ -24,8 +25,10 @@ router.post('/login',function (req, res) {
 
     User.findOne({ email: req.body.email},function (err, user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
-            console.log('user found', user);
+            
             var token = jwt.sign({email: user.email}, 's3cr3t', {expiresIn: 3600});
+            connectedUser=user;
+            module.exports.connectedUser=connectedUser;
             res.status(200).json({success: true, token: token});
         } else {
             res.status(401).json('unauthorized');
@@ -36,3 +39,4 @@ router.post('/login',function (req, res) {
 
 
 module.exports = router;
+//module.exports.connectedUser=connectedUser;
