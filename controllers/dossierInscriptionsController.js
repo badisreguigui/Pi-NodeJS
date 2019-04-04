@@ -5,15 +5,7 @@ var Stationnement = require('../models/stationnement');
 var Garantie = require('../models/garantie');
 
 
-/* exports.ajouterDossierInscription = function (req, res){
-    var dossierInscription = new DossierInscription(req.body);
-    dossierInscription.save(function (err,todo) {
-        if(err)
-            res.send(err);
-        else
-            res.send(todo);
-    })
-} */
+
 
 // inscription 
 exports.ajouterDossierInscription = function (req, res){

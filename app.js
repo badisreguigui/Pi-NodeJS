@@ -7,13 +7,18 @@ var db = require('./Database/db');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./api/users');
 var voitureRouter = require('./api/voitures');
+var messageRouter = require('./api/messages');
 var conducteurRouter = require('./api/conducteurs');
 var stationnementRouter = require('./api/stationnements');
 var garantieRouter = require('./api/garanties');
 var dossierInscriptionRouter = require('./api/dossierInscriptions');
 //var usersRouter = require('./api/users ');
+var billing = require('./api/billing');
+var textSpeech = require('./api/textSpeech');
+var paymentsMethods = require('./api/paymentsMethods');
+
 
 var app = express();
 
@@ -30,12 +35,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/messages', messageRouter);
 app.use('/voitures',voitureRouter);
 app.use('/conducteurs',conducteurRouter);
 app.use('/stationnements',stationnementRouter);
 app.use('/garanties',garantieRouter);
 app.use('/inscriptions',dossierInscriptionRouter);
-
+app.use('/billing',billing);
+app.use('/textspeech',textSpeech);
+app.use('/paymentsMethods',paymentsMethods);
 
 
 // catch 404 and forward to error handler
@@ -53,5 +61,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
