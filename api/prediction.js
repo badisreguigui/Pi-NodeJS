@@ -10,6 +10,7 @@ const PredictionController = require('../controllers/prediction.js');
 
 
 
+
 router.post('/',PredictionController.predict);
 
 

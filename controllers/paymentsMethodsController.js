@@ -4,12 +4,7 @@ var PaymentsInsurance = require('../models/paymentsInsurance')
 var ClientsArchive = require('../models/clientsArchive')
 ObjectId = require('mongodb').ObjectID;
 var paypal = require('paypal-rest-sdk');
-paypal.configure({
-    'mode': 'sandbox', //sandbox or live 
-    'client_id': 'Af7sj5XpVPKHexMas63ZBhOv0wT03fmbRgdsTo0uTLOUeXBb7mPfKCMTxlP1pEL3eopyQXVkF3dgPUwb', // please provide your client id here 
-    'client_secret': 'ELAlPJjXGrJC0IpP6YJzJlXqT_lYTTJ09IhnDd21FDSoNuQ1pqF4jGgzkslGX-dGN-dSNdr8DZsd2hw9' // provide your client secret here 
-  });
-const stripe = require('stripe')('sk_test_XA950iYFnIrsHN5H9xjtp1In');
+
 
 
 

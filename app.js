@@ -13,12 +13,16 @@ var messageRouter = require('./api/messages');
 var conducteurRouter = require('./api/conducteurs');
 var stationnementRouter = require('./api/stationnements');
 var garantieRouter = require('./api/garanties');
+var predictRouter=require('./api/prediction');
 var dossierInscriptionRouter = require('./api/dossierInscriptions');
 //var usersRouter = require('./api/users ');
+var policyContractRouter=require('./api/insuranceContract');
+
 var billing = require('./api/billing');
 var textSpeech = require('./api/textSpeech');
 var paymentsMethods = require('./api/paymentsMethods');
 var mailRouter = require('./api/mail');
+
 
 
 var app = express();
@@ -37,11 +41,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/messages', messageRouter);
+app.use('/api/predict', predictRouter);
 app.use('/voitures',voitureRouter);
 app.use('/conducteurs',conducteurRouter);
 app.use('/stationnements',stationnementRouter);
 app.use('/garanties',garantieRouter);
 app.use('/inscriptions',dossierInscriptionRouter);
+app.use('/policyContract',policyContractRouter);
+
+
 app.use('/billing',billing);
 app.use('/textspeech',textSpeech);
 app.use('/paymentsMethods',paymentsMethods);
