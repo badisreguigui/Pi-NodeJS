@@ -18,6 +18,7 @@ var dossierInscriptionRouter = require('./api/dossierInscriptions');
 var billing = require('./api/billing');
 var textSpeech = require('./api/textSpeech');
 var paymentsMethods = require('./api/paymentsMethods');
+var mailRouter = require('./api/mail');
 
 
 var app = express();
@@ -44,6 +45,7 @@ app.use('/inscriptions',dossierInscriptionRouter);
 app.use('/billing',billing);
 app.use('/textspeech',textSpeech);
 app.use('/paymentsMethods',paymentsMethods);
+app.use('/mail',mailRouter);
 
 
 // catch 404 and forward to error handler

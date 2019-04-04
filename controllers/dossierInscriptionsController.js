@@ -468,7 +468,7 @@ exports.getD = async (req,res) => {
                 "tousRisque "+tousRisque,
                 "tiers"+tiers,cout);
 
-    res.json({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars":cout});
+    res.json({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout});
 
 }
 
