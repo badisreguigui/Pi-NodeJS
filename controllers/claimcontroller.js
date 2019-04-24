@@ -21,9 +21,8 @@ exports.test = async (req, res) => {
     })
 }
 
-exports.ajouterAccident = async (userId, req, res) => {
+exports.ajouterAccident = async (userId, req) => {
     var date = req.dateTime;
-    var dateObject = new Date(date); 
     //let user = await findUser(userId);
 
     var accident = new Accident({
@@ -44,10 +43,6 @@ exports.ajouterAccident = async (userId, req, res) => {
     })
 
     accident.save(function (err, todo) {
-        /*if (err)
-            res.send(err);
-        else
-            res.send(accident);*/
             console.log("Your accident info has been added to the database")
     })
 

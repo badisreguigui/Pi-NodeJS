@@ -11,7 +11,7 @@ paypal.configure({
   });
 //const stripe = require('stripe')('sk_test_XA950iYFnIrsHN5H9xjtp1In');
 
-/d
+
 /*
 exports.gotostripe = function(req,res){
     var months=6; //req.params.months

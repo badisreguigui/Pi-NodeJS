@@ -19,7 +19,7 @@ exports.userInscription = function(req, res) {
         numberOfOpenClaims: 0,
         monthsSinceLastClaim: 0
     })
-    /dsds 
+    
     user.save(function (err, todo) {
         if (err)
             res.send(err);

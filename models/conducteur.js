@@ -15,4 +15,4 @@ var conducteurSchema = new mongoose.Schema({
     etatClient:{type: Number,default:0},
     typeAssurance:{type: String, minLength:1, trim: true},
 });
-module.exports = mongoose.model('Conducteur',conducteurSchema);/
+module.exports = mongoose.model('Conducteur',conducteurSchema);

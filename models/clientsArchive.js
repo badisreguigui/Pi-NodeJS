@@ -6,4 +6,4 @@ var clientArchiveSchema = new  mongoose.Schema({
     etatPayment:{type: Number},
     etatClient:{type: Number},
 })
-module.exports = mongoose.model('ClientsArchive', clientArchiveSchema);/
+module.exports = mongoose.model('ClientsArchive', clientArchiveSchema);
