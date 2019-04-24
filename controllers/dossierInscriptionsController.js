@@ -470,8 +470,7 @@ TRAVAIL : 'TRAVAIL' */
                 "tousRisque "+tousRisque,
                 "tiers"+tiers,cout);*/
 
-    console.log({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout});
-    return {"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout};
+    res.json({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout});
 
 }
 
