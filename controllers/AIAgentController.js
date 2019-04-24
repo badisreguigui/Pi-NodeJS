@@ -201,7 +201,7 @@ const fs = require('fs');
     const noeud25 = new Noeud("prediction", dialogue25, null, null, null, noeud25Child, ["answer"]); 
 
     const noeud26 = new Noeud("subscribe", dialogue26, null, 3, null, null, ["subscribe"]); 
-    const noeud27 = new Noeud("subscribe", ["From analysis of this conversation:"], null, null, null, null); 
+    const noeud27 = new Noeud("subscribe", ["From analysis of this conversation:"], null, null, null, null, ["mood"]); 
     const noeudCancel = new Noeud("cancel", ["Okay, let's cancel this", "Okay I'm stopping this process"], null, null, null, null, ["cancel"]); 
 
     var listNoeuds = [noeud1, noeud2, noeud3, noeud4, noeud5, noeud6, noeud7, noeud8, noeud9, noeud10, noeud11, noeud12, noeud13, noeudJoke1,
@@ -505,12 +505,12 @@ async function checkLogin() {
   else {
     if (parts != null) {
       console.log("passwd: " + parts[0] + " name: " + parts[1]); 
-      //resultString+="passwd: " + parts[0] + " name: " + parts[1]; 
+      resultString+="passwd: " + parts[0] + " name: " + parts[1]; 
       var user = new User({
         password: parts[0].trim(), 
         name: parts[1].trim()
       }); 
-      userConnecte = await userController.userLogin(user); 
+     /* userConnecte = await userController.userLogin(user); 
       if(userConnecte != null) {
         resultString += 'Welcome to your account '+ userConnecte.name, '. How can I assist you?' + "\n";
         //res.write('Welcome to your account '+ userConnecte.name, '. How can I assist you?' + "\n"); 
@@ -520,7 +520,7 @@ async function checkLogin() {
       else {
         console.log("Retry again"); 
         resultString+="Retry again"; 
-      }
+      }*/
     }
   }
 }
@@ -840,20 +840,20 @@ function prediction3() {
 function prediction4() {
   if (((answerString.includes("employed")))) {
     employmentStatus = 'Employed';
-    const prediction = predictionController.predict(gender, vehiculeSize, vehiculClass, employmentStatus);
-    resultString+=prediction + "\n"; 
+    /*const prediction = predictionController.predict(gender, vehiculeSize, vehiculClass, employmentStatus);
+    resultString+=prediction + "\n"; */
     inputIntentOrAnswer = true;
   }
   else if (((answerString.includes("unemployed")))) {
     employmentStatus = 'Unemployed';
-    const prediction = predictionController.predict(gender, vehiculeSize, vehiculClass, employmentStatus);
-    resultString+=prediction + "\n"; 
+    /*const prediction = predictionController.predict(gender, vehiculeSize, vehiculClass, employmentStatus);
+    resultString+=prediction + "\n"; */
     inputIntentOrAnswer = true;
   }
   else if (((answerString.includes("retired")))) {
     employmentStatus = 'Retired';
-    const prediction = predictionController.predict(gender, vehiculeSize, vehiculClass, employmentStatus);
-    resultString+=prediction + "\n"; 
+    /*const prediction = predictionController.predict(gender, vehiculeSize, vehiculClass, employmentStatus);
+    resultString+=prediction + "\n"; */
     inputIntentOrAnswer = true;
   }
 }
