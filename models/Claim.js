@@ -21,7 +21,7 @@ var ClaimSchema = new mongoose.Schema({
     img: { type : Array , "default" : [] },
     otherVehiculeRegistration: String, 
     otherVehiculeLicencePlate: String, 
-    damageEstimation:{type: Number,},
+    damageEstimation: String, 
     progress: String
 })
 

@@ -1,14 +1,14 @@
 var DecisionTree = require('decision-tree');
-var MLR =require( 'ml-regression-multivariate-linear');
+/*var MLR =require( 'ml-regression-multivariate-linear');
 
 var dt = require('node-decision-tree');
 
-const csv = require('csv-parser');  
+const csv = require('csv-parser');  */
 var fs = require("fs");
-var twilio = require('twilio');
+//var twilio = require('twilio');
 const userController=require('../api/users');
 const dossierController=require('../controllers/dossierInscriptionsController');
-exports.predict = function (req, res) {
+exports.predict = function (gender, vehicleClass, vehicleSize,  employmentStatus, res) {
 
     var train = [];
     var predict=[];
@@ -29,9 +29,7 @@ exports.predict = function (req, res) {
         train.push(x);
        
     }
-    var userInfo=
-        { Gender:req.body.Gender, VehicleClass:req.body.VehicleClass, VehicleSize:req.body.VehicleSize, EmploymentStatus:req.body.EmploymentStatus};
-    predict.push(userInfo);
+    
 
     var features  = ['Gender', 'VehicleClass', 'VehicleSize','EmploymentStatus'];
 
@@ -40,10 +38,10 @@ exports.predict = function (req, res) {
     var dt = new DecisionTree(train, class_name, features);
 
     var predicted_class = dt.predict({
-    Gender:req.body.Gender,
-    VehicleClass:req.body.VehicleClass,
-    VehicleSize:req.body.VehicleSize,
-    EmploymentStatus:req.body.EmploymentStatus
+    Gender:gender,
+    VehicleClass:vehicleClass,
+    VehicleSize:vehicleSize,
+    EmploymentStatus:employmentStatus
 
     });
     var accuracy = dt.evaluate(test_data);
@@ -63,5 +61,7 @@ exports.predict = function (req, res) {
     })
     */
 
-  res.send(predicted_class);
+//  res.send(predicted_class);
+console.log(predicted_class); 
+return predicted_class;
     }

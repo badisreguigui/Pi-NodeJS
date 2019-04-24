@@ -6,7 +6,7 @@ var conducteurSchema = new mongoose.Schema({
     prenom : {type : String ,default: null},
     age : {type : Number ,default: null},
     numeroTel : {type : Number ,default: null},
-    situation :  { type : String , required : true},
+    situation :  { type : String },
     dateNaissance : {type: Date ,default: Date.now},
     dateObtentionDuPermis : {type : Date ,default: Date.now},
     mail : {type : String ,default: null},

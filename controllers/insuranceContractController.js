@@ -4,9 +4,9 @@ const dossierController=require('../controllers/dossierInscriptionsController');
 var Conducteur=require('../models/conducteur');
 var Garantie=require('../models/garantie');
 
-exports.addInsuranceContract = async (req, res)=>{
+exports.addInsuranceContract = async (user, res)=>{
 
-    var user=userController.connectedUser;
+    //var user = userController.connectedUser;
     var dossierInscription=dossierController.policyDossierInscription;
     var policyCost=dossierController.policyCost;
     var fetchedConducteur= await getConducteur(dossierInscription.conducteur);
@@ -65,8 +65,6 @@ else if( dossierInscription.dureeAsurance=='ANNUEL')
 
 var myDate = new Date(Date.now());
 myDate.setDate(myDate.getDate() + numberOfDays);
-console.log('my date==>'+myDate);
-console.log('my garanties ====>'+coverageList);
     var insuranceContract=new InsuranceContract({
         policyholder:user.id,
         insurancePrice:1200,
@@ -76,12 +74,10 @@ console.log('my garanties ====>'+coverageList);
     });
   
     insuranceContract.save(function (err,todo) {
-        if(err)
-            res.send(err);
-        else
-            res.send(todo);
+       console.log("you are successfully subscribed. Your insurance price is " + 1200 + " for 180 days" + " days. And your insurance coverage is " + coverageList ); 
+       return "you are successfully subscribed. Your insurance price is " + 1200 + " for 180 days" + " days. And your insurance coverage is " + coverageList ;
     })
-
+    
     //
 }
 

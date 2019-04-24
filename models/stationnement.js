@@ -13,7 +13,7 @@ const TypeDeplacement = {
 };
 
 var stationnementSchema = new mongoose.Schema({
-    codePostal :  { type : Number , required : true},
+    codePostal :  { type : Number},
     ville : {type: String ,default: null},
     tStationnement : {type : TypeStationnement ,default: null},
     tDeplacement : {type : TypeDeplacement ,default: null},

@@ -4,39 +4,13 @@ var User = require('../models/users');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
-var auth = require('../api/auth')
+var auth = require('../api/auth'); 
+var userController = require('../controllers/userController'); 
 
-var connectedUser=null;
-router.post('/register',function (req, res) {
-    var user = new User({
-        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
-        email: req.body.email
-    })
-    user.save(function (err, todo) {
-        if (err)
-            res.send(err);
-        else
-            res.send(user);
-    })
+router.post('/register', userController.userInscription);
 
-});
-
-router.post('/login',function (req, res) {
-
-    User.findOne({ email: req.body.email},function (err, user) {
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-            
-            var token = jwt.sign({email: user.email}, 's3cr3t', {expiresIn: 3600});
-            connectedUser=user;
-            module.exports.connectedUser=connectedUser;
-            res.status(200).json({success: true, token: token});
-        } else {
-            res.status(401).json('unauthorized');
-        }
-    });
-});
+router.post('/login', userController.userLogin);
 
 
 
 module.exports = router;
-//module.exports.connectedUser=connectedUser;

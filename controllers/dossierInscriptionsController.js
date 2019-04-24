@@ -9,12 +9,12 @@ var policyDossierInscription=null;
 
 
 // inscription 
-exports.ajouterDossierInscription = function (req, res){
+exports.ajouterDossierInscription = function (conducteur, voiture, stationnement, garantie, res){
     // var dossierInscription = new DossierInscription(req.body);
-     var conducteur = new Conducteur(req.body.conducteur);
-     var voiture=new Voiture(req.body.vehicule);
-     var stationnement=new Stationnement(req.body.stationnement);
-     var garantie=new Garantie(req.body.garantie);
+     var conducteur = new Conducteur(conducteur);
+     var voiture = new Voiture(voiture);
+     var stationnement = new Stationnement(stationnement);
+     var garantie = new Garantie(garantie);
      conducteur.save().then(()=>{
          voiture.save().then(()=>{
              stationnement.save().then(()=>{
@@ -24,19 +24,17 @@ exports.ajouterDossierInscription = function (req, res){
                          conducteur:conducteur.id,
                          vehicule:voiture.id,
                          stationnement:stationnement.id,
-                         garantie:garantie.id,
-                         dureeAsurance:req.body.dureeAsurance
+                         garantie:garantie.id
                      });
                      policyDossierInscription=dossierInscription;
-                     module.exports.policyDossierInscription=policyDossierInscription;
-                     dossierInscription.save();
-                     res.send(dossierInscription);
+                     module.exports.policyDossierInscription = policyDossierInscription;
+                     dossierInscription.save(async function (err, user) {
+                        return await getD(dossierInscription._id, res);
+                    });
                  })
              })
          })
      })
-
-     
    
  }
 
@@ -235,16 +233,16 @@ TRAVAIL : 'TRAVAIL' */
     "suggestion du type d'assurance ": "tous risques",
     "reponse": "mauvais",
     "cout personnalisé en dinars": 275 */
-exports.getD = async (req,res) => {
-    var dossier = await getDossier(req.params.id);  
+ async function getD (req,res) {
+    var dossier = await getDossier(req);  
     var vehicule = await getVoiture(dossier.vehicule);
     var stationnement = await getStationnement(dossier.stationnement);
     var garantie = await getGarantie(dossier.garantie);
     var conducteur = await getConducteur(dossier.conducteur);
 
     var dateNow = new Date().getFullYear();
-    var miseCirculation = dateNow-vehicule.miseCirculation.getFullYear();
-    var permis = dateNow-conducteur.dateObtentionDuPermis.getFullYear();
+    var miseCirculation = 6;//dateNow-vehicule.miseCirculation.getFullYear();
+    var permis = 1;//dateNow-conducteur.dateObtentionDuPermis.getFullYear();
     var tousRisque = 0;
     var tiers = 0;
     var intermediare = 0;
@@ -467,12 +465,13 @@ exports.getD = async (req,res) => {
     cout = await CalculerCout(suggestion,score);
     policyCost=cout;
     module.exports.policyCost=policyCost;
-    console.log(reponse,suggestion);
+    /*console.log(reponse,suggestion);
     console.log("inter "+intermediare,
                 "tousRisque "+tousRisque,
-                "tiers"+tiers,cout);
+                "tiers"+tiers,cout);*/
 
-    res.json({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars":cout});
+    console.log({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout});
+    return {"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout};
 
 }
 

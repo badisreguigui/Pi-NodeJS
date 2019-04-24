@@ -1,4 +1,4 @@
-var Clients = require('../models/conducteur')
+var Clients = require('../models/users')
 var Claims = require('../models/Claim')
 var ApproxClients = require('../models/approximationClient')
 var PaymentsInsurance = require('../models/paymentsInsurance')
@@ -12,23 +12,18 @@ exports.home =  function (req, res) {
 
 //check Payment Status (1er fonction exécuté - scénario Badis)
 exports.getClientPaymentEtat =  function (req, res) {
-
-    var id = req.params.id
-    
+    var id = req;
         Clients.findById(id).exec(function(reqf,resf,errf){
            if (errf) console.log(errf);
            
                 if(resf!=null){
-                    if(resf.etatPayment==0){
-                        //res.render('index.twig',{client:resf})  
-                      
-                        res.send('you have payments Waiting : '+resf.typeAssurance)                  
+                    if(resf.etatPayment == 0){
+                      console.log('You have your payments waiting for your ' + resf.typeAssurance + ' insurance. The amount is of 350 DT that you will have to pay before this date: 30-04-2019');
                     }
                     else
-                        res.send("No Payments Needed")
+                      console.log('No Payments Needed: ' + resf.typeAssurance);
                 }
     
-           
                 if(resf==null){
                   console.log('no response')
                   return false;
@@ -53,9 +48,6 @@ exports.checkPayment = function(req,res){
         var days = Math.floor(diff / day);
         var months = Math.floor(days / 31);
         var years = Math.floor(months / 12);
-        console.log(days)
-        console.log(months)
-        console.log(years)
         
         if (days>=0 || months>=0 ){
             res.send("You still have "+days+" days => Timer : "+years+" year || "+months+" months || "+days+" days")
@@ -163,95 +155,4 @@ exports.getTotalEstimated = function (req,res){
        })
             
     })
-}
-
-function gethistoryPaymentsbyId (idclient) {
-  return new Promise(function(resolve, reject) {
-    PaymentsInsurance.find({"idClient":idclient,"etat":1}, function(err, docs) {
-      if (err) {
-        // Reject the Promise with an error
-        return reject(err)
-      }
-
-      // Resolve (or fulfill) the promise with data
-      return resolve(docs)
-    })
-  })
-}
-
-function geTotalClaimsbyId (idclient) {
-  return new Promise(function(resolve, reject) {
-    ApproxClients.find({"idClient":idclient}, function(err, docs) {
-      if (err) {
-        // Reject the Promise with an error
-        return reject(err)
-      }
-
-      // Resolve (or fulfill) the promise with data
-      return resolve(docs)
-    })
-  })
-}
-exports.checkhistoryPaymentsbyId = async (req,res) =>{
-  let payments= await gethistoryPaymentsbyId(req.params.idclient)
-  var arrayPayments = [];
-  payments.forEach(function(item) {
-    if (arrayPayments.indexOf(item) === -1)
-    arrayPayments.push(item);
-    console.log(arrayPayments.length)
-});
-  res.send(arrayPayments)
-}
-
-
-exports.checkGainClient = async (req,res) =>{
-  var idclient = req.params.idclient;
-  var DateNow=new Date(Date.now())
-  var total=0;
-  var totalClaims=0;
-  let payments= await gethistoryPaymentsbyId(idclient)
-  let claims= await geTotalClaimsbyId(idclient)
-  var arrayPayments = [];
-  payments.forEach(function(item) {
-    if (arrayPayments.indexOf(item) === -1)
-    arrayPayments.push(item);
-    console.log(arrayPayments.length)
-});
-  for(var i=0;i<arrayPayments.length;i++){
-    if(arrayPayments[i].datePaymentStart.getYear()==DateNow.getYear()){
-      console.log(arrayPayments[i].datePaymentStart.getYear() +" "+DateNow.getYear())
-      total=Number(total)+Number(arrayPayments[i].totalPayed)
-      console.log(total)
-    }else{
-      console.log("not found")
-    }
-    
-  }
-  var arrayClaims = [];
-  claims.forEach(function(item) {
-    if (arrayClaims.indexOf(item) === -1){
-      arrayClaims.push(item);
-      console.log(arrayClaims.length)
-    }
-});
-for(var i=0;i<arrayClaims.length;i++){
-  if(arrayClaims[i].datePaymentClaimInsurance.getYear()==DateNow.getYear()){
-    console.log(arrayClaims[i].datePaymentClaimInsurance.getYear() +" "+DateNow.getYear())
-    totalClaims=Number(totalClaims)+Number(arrayClaims[i].totalApprox)
-    console.log(totalClaims)
-  }else{
-    console.log("not found")
-  }
-  
-}
-var positiveTotalGained = Number(totalClaims)-Number(total);
-console.log(positiveTotalGained)
-if(positiveTotalGained>0){
-  res.send("You Won : Total payed by you in "+DateNow.getFullYear()+" : "+total+" - Total payed by your Insurance for your claims : "+totalClaims+" = "+positiveTotalGained)
-
-}
-else{
-  res.send("You Lost : Total payed by you in "+DateNow.getFullYear()+" : "+total+" - Total payed by your Insurance for your claims : "+totalClaims+" = "+positiveTotalGained)
-}
-
 }
