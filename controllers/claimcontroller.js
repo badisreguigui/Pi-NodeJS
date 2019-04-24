@@ -95,10 +95,6 @@ exports.ajouterClaim = async (user, req, res) => {
     })
 
     claim.save(function (err, todo) {
-       /* if (err)
-            res.send(err);
-        else
-            res.send(claim);*/
             console.log('Your claim has been saved')
     })
 
