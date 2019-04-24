@@ -5,7 +5,7 @@ var Conducteur=require('../models/conducteur');
 var Garantie=require('../models/garantie');
 
 exports.addInsuranceContract = async (user, res)=>{
-
+/
     //var user = userController.connectedUser;
     var dossierInscription=dossierController.policyDossierInscription;
     var policyCost=dossierController.policyCost;

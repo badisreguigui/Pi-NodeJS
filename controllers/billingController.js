@@ -9,7 +9,7 @@ ObjectId = require('mongodb').ObjectID;
 exports.home =  function (req, res) {
     res.render('../views/index.twig');
 }
-
+/**/
 //check Payment Status (1er fonction exécuté - scénario Badis)
 exports.getClientPaymentEtat =  function (req, res) {
     var id = req;

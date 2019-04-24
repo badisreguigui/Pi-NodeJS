@@ -7,7 +7,7 @@ var Garantie = require('../models/garantie');
 var policyCost=null;
 var policyDossierInscription=null;
 
-
+/**/
 // inscription 
 exports.ajouterDossierInscription = function (conducteur, voiture, stationnement, garantie, res){
     // var dossierInscription = new DossierInscription(req.body);

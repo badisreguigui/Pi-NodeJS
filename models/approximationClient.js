@@ -6,3 +6,5 @@ var approximationClientSchema = new  mongoose.Schema({
     datePaymentClaimInsurance:{type: Date, trim: true},
 })
 module.exports = mongoose.model('approxClient', approximationClientSchema);
+
+//

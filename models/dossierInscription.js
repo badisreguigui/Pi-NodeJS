@@ -16,4 +16,5 @@ var dossierInscriptionSchema = new mongoose.Schema({
     garantie : {type: mongoose.Schema.Types.ObjectId , ref: 'Garantie' ,default: null},
     dureeAsurance : {type: DureeAssurance ,default: null},
 });
+
 module.exports = mongoose.model('DossierInscription',dossierInscriptionSchema);

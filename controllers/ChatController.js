@@ -10,7 +10,7 @@ exports.addMsg = (user, messageBody, author) => {
     var date = Date.now(); 
     var dateClaim = Date(date); 
 
-   
+   /***/
     Discussion.findOneAndUpdate({user: ObjectId(user.id)}, {$set:{lastMsg:messageBody}}).then((data) => {
             if(data == null) {
                 console.log("discuss added")

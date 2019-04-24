@@ -11,4 +11,5 @@ var garantieSchema = new mongoose.Schema({
     nature : {type : Boolean ,default: false},
     assistanceAuto : {type : Boolean ,default: false}
 });
+
 module.exports = mongoose.model('Garantie',garantieSchema);

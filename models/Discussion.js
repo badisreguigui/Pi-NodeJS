@@ -10,4 +10,4 @@ var DiscussionSchema = new mongoose.Schema({
     img:String 
 })
 
-module.exports=mongoose.model('Discussion', DiscussionSchema);	
+module.exports=mongoose.model('Discussion', DiscussionSchema);	/

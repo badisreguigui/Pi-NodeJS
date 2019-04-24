@@ -9,7 +9,7 @@ var fs = require("fs");
 const userController=require('../api/users');
 const dossierController=require('../controllers/dossierInscriptionsController');
 exports.predict = function (gender, vehicleClass, vehicleSize,  employmentStatus, res) {
-
+/
     var train = [];
     var predict=[];
     var test_data=[];

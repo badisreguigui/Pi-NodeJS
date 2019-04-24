@@ -10,7 +10,7 @@ var userController = require('../controllers/userController');
 router.post('/register', userController.userInscription);
 
 router.post('/login', userController.userLogin);
+/**/
 
-
-
+//
 module.exports = router;
