@@ -10,9 +10,9 @@ var AIController = require('../controllers/AIAgentController');
 var connectedUser=null;
 exports.userInscription = function(req, res) {
     var user = new User({
-        password: bcrypt.hashSync(/*req.body.password*/"123456", bcrypt.genSaltSync(10)),
+        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
         //email: req.body.email, 
-        name: "Cheda Bn",
+        name: req.body.name,
         address: req.body.address, 
         phone: req.body.phone,
         vehiculeModel: req.body.vehiculeModel,

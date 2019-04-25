@@ -510,7 +510,7 @@ async function checkLogin() {
         password: parts[0].trim(), 
         name: parts[1].trim()
       }); 
-     /* userConnecte = await userController.userLogin(user); 
+      userConnecte = await userController.userLogin(user); 
       if(userConnecte != null) {
         resultString += 'Welcome to your account '+ userConnecte.name, '. How can I assist you?' + "\n";
         //res.write('Welcome to your account '+ userConnecte.name, '. How can I assist you?' + "\n"); 
@@ -520,7 +520,7 @@ async function checkLogin() {
       else {
         console.log("Retry again"); 
         resultString+="Retry again"; 
-      }*/
+      }
     }
   }
 }
