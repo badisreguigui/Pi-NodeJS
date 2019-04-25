@@ -6,7 +6,7 @@ var Garantie = require('../models/garantie');
 
 var policyCost=null;
 var policyDossierInscription=null;
-
+var insuranceType=null;
 /**/
 // inscription 
 exports.ajouterDossierInscription = function (conducteur, voiture, stationnement, garantie, res){
@@ -469,7 +469,7 @@ TRAVAIL : 'TRAVAIL' */
     console.log("inter "+intermediare,
                 "tousRisque "+tousRisque,
                 "tiers"+tiers,cout);*/
-
+ module.exports.insuranceType=suggestion;
     console.log({"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout});
     return {"numero de dossier":dossier._id,"score (%) ":score,"suggestion du type d'assurance ":suggestion,"reponse":reponse,"cout personnalisé en dinars par mois":cout};
 
