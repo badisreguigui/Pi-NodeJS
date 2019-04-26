@@ -9,6 +9,7 @@ var insuranceContratSchema = new mongoose.Schema({
     insuranceCompanyFax:{type:String,default:"(+216) 71 845 249"},
     insuranceCompanyMail:{type:String,default:"info@sfmtelecom.com"},
     insurancePrice:{type:Number,default:null},
+    insuranceType:{type:String,default:null},
     policyStartDate:{type:Date,default:new Date()},
     policyEndDate:{type:Date,required:true},
     insuranceCoverages:[String],
