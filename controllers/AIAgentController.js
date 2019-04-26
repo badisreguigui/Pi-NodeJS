@@ -885,6 +885,7 @@ exports.newIntent = function (req, res) {
   }
   listIntents.push(intentNew);
   saveIntentsFile();
+  train();
   res.send(intentNew);
 }
 
@@ -900,6 +901,11 @@ exports.newNoeud = function (req, res) {
 exports.listIntents = function (req, res) {
   loadIntentsFile();
   res.send(listIntents);
+}
+
+exports.listNoeuds = function (req, res) {
+  loadNoeudFile();
+  res.send(listNoeuds);
 }
 
 function saveIntentsFile() {

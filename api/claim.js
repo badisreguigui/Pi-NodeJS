@@ -19,6 +19,7 @@ router.post('/test', function(req, res){
 router.post('/AI', AIController.mainAI);
 router.post('/newIntent', AIController.newIntent);
 router.get('/listIntents', AIController.listIntents);
+router.get('/listNoeuds', AIController.listNoeuds);
 router.post('/newNoeud', AIController.newNoeud);
 /**/
 module.exports = router;
