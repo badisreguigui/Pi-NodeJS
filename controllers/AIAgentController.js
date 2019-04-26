@@ -216,23 +216,13 @@ const fs = require('fs');
     //train(); 
 
     exports.mainAI = function (req, res) {
-    ///Phrase initiale random////
     var randomIndex = Math.floor(Math.random() * noeudInit.sentenses.length);
     console.log(noeudInit.sentenses[randomIndex]); 
-    //resultString+= noeudInit.sentenses[randomIndex] + "\n"; 
-    //res.write(noeudInit.sentenses[randomIndex]);
-    //////
-    /*var stdin = process.openStdin();
-    stdin.addListener("data", function(d) {
-        */
         var string = req.query.value; 
         if(userConnecte != null) {
           chatController.addMsg(userConnecte, string, 'user');
         }
         
-        //var string = d.toString().trim(); 
-        //checkorth(string); 
-        //addIntent(string);  
         var resultAnalysis = sentimentAnalysis(string); 
         sommeAnalysis+= resultAnalysis.sum;  
         scoreAnalysis += resultAnalysis.score;
