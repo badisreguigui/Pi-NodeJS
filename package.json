@@ -25,6 +25,6 @@
     "socket.io": "^2.2.0",
     "supervisor": "^0.12.0",
     "twig": "^1.13.2",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   }
 }
