@@ -12,7 +12,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "decision-tree": "^0.3.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "google": "^2.1.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
